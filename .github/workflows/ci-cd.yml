@@ -1,5 +1,6 @@
 name: CI-CD-sample
 on:
+  push:  
   workflow_dispatch:
 
 jobs:
