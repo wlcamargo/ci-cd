@@ -1,0 +1,42 @@
+name: CI-CD-sample
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: 
+      name: dev
+      url: 'https://wlcamargo.github.io/'
+    needs: build
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy Dev
+
+  deploy-pp:
+    runs-on: ubuntu-latest
+    environment: 
+      name: pp
+      url: 'https://wlcamargo.github.io/'
+    needs: deploy-dev
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy PP
+
+
+  deploy-prd:
+    runs-on: ubuntu-latest
+    environment: 
+      name: prd
+      url: 'https://wlcamargo.github.io/'
+    needs: deploy-pp
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy PRD
